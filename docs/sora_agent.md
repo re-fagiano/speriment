@@ -28,6 +28,14 @@ Creare un agente autonomo che partendo da una traccia audio generata con Suno re
 - Gestire credenziali/API key tramite segreti sicuri.
 - Loggare ogni decisione dell'agente per auditing e debugging.
 
+## Gestione account Sora, deployment e API key
+- **Account Sora dedicato**: l'agente deve operare con un account Sora separato da quello personale. In questo modo è possibile revocare o ruotare rapidamente le credenziali senza impattare altri utilizzi.
+- **Integrazione con Railway**: Railway può essere utilizzato come ambiente di esecuzione continuo. Configurare un servizio dedicato per l'agente e collegare i repository necessari. Ogni progetto viene eseguito come job separato, e l'agente deve proseguire automaticamente fino al completamento del video finale.
+- **Gestione delle API key**: memorizzare le chiavi Sora (e di altri servizi come Suno) nelle variabili di ambiente sicure di Railway. Le chiavi non devono mai essere versionate nel repository.
+- **Rotazione automatica**: prevedere un meccanismo periodico o su richiesta per ruotare le API key e aggiornare i segreti su Railway.
+- **Monitoraggio per progetto**: implementare log strutturati o una dashboard che tracci lo stato di avanzamento di ogni progetto, assicurando che l'agente continui a iterare fino al risultato desiderato.
+- **Gestione delle quote**: configurare alert e limiti di utilizzo per evitare che l'agente esaurisca quote API in maniera incontrollata.
+
 ## Estensioni possibili
 - Integrazione con strumenti di scrittura testi per generare storyboard o copioni.
 - Fine-tuning di modelli generativi ausiliari (immagini, prompt) per migliorare la coerenza visiva.
